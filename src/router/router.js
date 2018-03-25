@@ -28,11 +28,14 @@ export default class Routers extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={App}>
+          <IndexRoute component={Home} />
           <Route path="home" component={Home} />
           <Route path="movie" component={Movie}>
-            <Route path="movieList" component={MovieList} />
-            <Route path="movieDetail" component={MovieDetail} />
-            <Route path="movieSearch" component={MovieSearch} />
+            {/*绝对路由:在前面加上/ */}
+            <IndexRoute component={MovieList} />
+            <Route path="/movie/movieList" component={MovieList} />
+            <Route path="/movie/movieDetail/:id" component={MovieDetail} />
+            <Route path="/movie/movieSearch" component={MovieSearch} />
           </Route>
           <Route path="about" component={About} />
         </Route>

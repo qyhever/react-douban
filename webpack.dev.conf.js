@@ -8,7 +8,8 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/main.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].build.js'
+    filename: '[name].build.js',
+    sourceMapFilename: '[name].map'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -16,8 +17,12 @@ module.exports = {
       '@': path.resolve(__dirname, './src'),
       'api': path.resolve(__dirname, './src/api'),
       'assets': path.resolve(__dirname, './src/assets'),
-      'common': path.resolve(__dirname, './src/common')
+      'common': path.resolve(__dirname, './src/common'),
+      'style': path.resolve(__dirname, './src/style'),
     }
+  },
+  devServer: {
+    host: '192.168.137.1'
   },
   module: {
     // webpack1的写法
@@ -62,6 +67,11 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      // 处理在js中引用styl文件
+      {
+        test: /\.styl$/,
+        use: ['style-loader', 'css-loader', 'stylus-loader'],
       },
       // 处理图片
       {

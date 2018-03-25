@@ -83,3 +83,15 @@ render(){
 <Redirect from="movieList" to="/movieList" />
 <Redirect from="movieDetail" to="/movieDetail" />
 ```
+
+
+
+## Histories
+
+#### hashHistory
+
+- 路径带`#`号，会造成组件渲染两次，但是兼容性好，可以用在低版本浏览器上
+
+#### browserHistory
+
+- 路径不带`#`号，不会造成组件渲染两次，但是兼容性不好，而且需要服务端渲染
