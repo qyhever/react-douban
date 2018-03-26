@@ -10,8 +10,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/in_theaters', (req, res, next) => {
-  const url = 'http://api.douban.com/v2/movie/in_theaters';
+app.get('/movie/list', (req, res, next) => {
+  const pageInfo = JSON.parse(req.query.pageInfo);
+  console.log(pageInfo)
+  const {movieType, start, count} = JSON.parse(req.query.pageInfo);
+  const url = `http://api.douban.com/v2/movie/${movieType}?start=${start}&count=${count}`;
   request(url, (error, response, body) => {
     if (!error && response.statusCode === 200) {
       res.send(body);
@@ -19,7 +22,7 @@ app.get('/in_theaters', (req, res, next) => {
   });
 });
 
-app.get('/getMovieDetail/:id', (req, res, next) => {
+app.get('/movie/detail/:id', (req, res, next) => {
   const id = req.params.id;
   const url = `http://api.douban.com/v2/movie/subject/${id}`;
   request(url, (error, response, body) => {

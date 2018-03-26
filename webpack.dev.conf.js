@@ -22,7 +22,7 @@ module.exports = {
     }
   },
   devServer: {
-    host: '192.168.137.1'
+    host: 'localhost'
   },
   module: {
     // webpack1的写法
